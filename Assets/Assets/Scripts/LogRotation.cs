@@ -16,13 +16,6 @@ public class LogRotation : MonoBehaviour
     {
         rotation = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), 0, Mathf.Sin(angle * Mathf.Deg2Rad));
 
-        if(Input.GetKey("up") || Input.GetKey("down")) {
-            if(Input.GetKey("up")) {
-                angle -= 1;
-            } else if (Input.GetKey("down")) {
-                angle += 1;
-            }
-        }
         Debug.DrawRay(transform.position, rotation * 5, Color.green);
 
         moveSideways = Input.GetAxisRaw("Horizontal");
@@ -32,5 +25,13 @@ public class LogRotation : MonoBehaviour
         position = transform.position;
         position.x = position.x + movingSpeed * moveSideways * Time.deltaTime;
         transform.position = position;
+
+        if(Input.GetKey("up") || Input.GetKey("down")) {
+            if(Input.GetKey("up")) {
+                angle -= 3;
+            } else if (Input.GetKey("down")) {
+                angle += 3;
+            }
+        }
     }
 }

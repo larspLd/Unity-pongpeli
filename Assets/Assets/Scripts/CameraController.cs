@@ -7,7 +7,16 @@ public class CameraController : MonoBehaviour
     Quaternion rotation;
     public float rotationSpeed = 1f;
 
-    // Update is called once per frame
+    GameObject tempPlayer;
+    Transform player;
+
+    Vector3 position;
+
+    void Start() {
+        tempPlayer = GameObject.Find("Capsule");
+        player = tempPlayer.GetComponent<Transform>();
+    }
+
     void Update()
     {
         if (Input.GetKey("w")) {
@@ -19,5 +28,11 @@ public class CameraController : MonoBehaviour
             transform.rotation = rotation;
 
         }
+        position = new Vector3(player.position.x - 20, player.position.y + 18, player.position.z - 20);
+
+    }
+
+    void FixedUpdate() {
+        transform.position = position;
     }
 }

@@ -18,7 +18,7 @@ public class cubeController : MonoBehaviour
     void Update()
     {
         distance = Vector3.Distance(player.position, transform.position);
-        position = new Vector3(transform.position.x, (2 * Mathf.Sin(2 * Time.time + distance * 0.4f)), transform.position.z);
+        position = new Vector3(transform.position.x, (2 * Mathf.Sin(2f * Time.time)), transform.position.z);
 
         transform.position = position;
     }
