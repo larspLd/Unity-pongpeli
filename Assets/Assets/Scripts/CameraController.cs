@@ -26,13 +26,6 @@ public class CameraController : MonoBehaviour
         } else if(Input.GetKey("s")) {
             rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z - rotationSpeed);
             transform.rotation = rotation;
-
         }
-        position = new Vector3(player.position.x - 20, player.position.y + 18, player.position.z - 20);
-
-    }
-
-    void FixedUpdate() {
-        transform.position = position;
     }
 }
