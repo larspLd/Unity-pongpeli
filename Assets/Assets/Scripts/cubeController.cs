@@ -8,7 +8,9 @@ public class cubeController : MonoBehaviour
     float distance;
 
     GameObject tempPlayer;
-    Transform player;
+    Transform player;   
+
+    public float speed;
 
     void Start() {
         tempPlayer = GameObject.Find("Capsule");
@@ -18,7 +20,7 @@ public class cubeController : MonoBehaviour
     void Update()
     {
         distance = Vector3.Distance(player.position, transform.position);
-        position = new Vector3(transform.position.x, (40 * Mathf.Sin(0.2f * Time.time)), transform.position.z);
+        position = new Vector3(transform.position.x, (20 * Mathf.Sin(speed * Time.timeSinceLevelLoad)), transform.position.z);
 
         transform.position = position;
     }
