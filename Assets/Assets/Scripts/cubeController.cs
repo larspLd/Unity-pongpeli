@@ -8,13 +8,25 @@ public class cubeController : MonoBehaviour
     float distance;
 
     GameObject tempPlayer;
+    GameObject tempCamera;
+    BlitTest cameraObject;
+
+    Shader cameraShader;
+
     Transform player;   
+    MeshRenderer meshRenderer;
 
     public float speed;
 
     void Start() {
         tempPlayer = GameObject.Find("Capsule");
         player = tempPlayer.GetComponent<Transform>();
+
+
+        /*tempCamera = GameObject.Find("Camera");
+        cameraObject = tempCamera.GetComponent<BlitTest>();
+        cameraObject.mat.SetFloat("_Zoom", 60f);*/
+        Debug.Log(StateController.randomNumber);
     }
 
     void Update()

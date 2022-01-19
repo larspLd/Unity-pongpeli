@@ -9,6 +9,8 @@ public class PlayButton : MonoBehaviour
     LevelLoader loader;
 
     public void startGame() {
+        StateController.randomNumber = Random.Range(1f, 6f);
+
         loaderObject = GameObject.Find("SceneManager");
         loader = loaderObject.GetComponent<LevelLoader>();
         

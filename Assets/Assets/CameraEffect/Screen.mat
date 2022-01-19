@@ -27,7 +27,7 @@ Material:
     - _AbberationStrength: 0.5
     - _Brightness: 2.5
     - _CurveX: 3
-    - _CurveY: 4.1
+    - _CurveY: 60
     - _DoubleOffset: 0.5
     - _DoubleStrength: 0.5
     - _LineDistributionPow: 4
