@@ -41,7 +41,7 @@ Material:
     - _UseScanLines: 1
     - _UseVignette: 1
     - _VignettePower: 0.45
-    - _Zoom: 1.1
+    - _Zoom: 1.01
     m_Colors:
     - _ColourOffset: {r: 0, g: 0, b: 0, a: 0}
     - _Params: {r: 0, g: 0, b: 0, a: 0}
