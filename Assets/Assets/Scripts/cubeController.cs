@@ -1,38 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class cubeController : MonoBehaviour
 {
     Vector3 position;
-    float distance;
 
-    GameObject tempPlayer;
+    public float speed;
+    private float perlin;
+
     GameObject tempCamera;
     BlitTest cameraObject;
 
-    Shader cameraShader;
-
-    Transform player;   
-    MeshRenderer meshRenderer;
-
-    public float speed;
-
     void Start() {
-        tempPlayer = GameObject.Find("Capsule");
-        player = tempPlayer.GetComponent<Transform>();
 
-
-        /*tempCamera = GameObject.Find("Camera");
+        tempCamera = GameObject.Find("Camera");
         cameraObject = tempCamera.GetComponent<BlitTest>();
-        cameraObject.mat.SetFloat("_Zoom", 60f);*/
-        Debug.Log(StateController.randomNumber);
+        cameraObject.mat.SetFloat("_Zoom", 60f);
+        perlin = Random.Range(0.7f, 1.3f);
     }
 
     void Update()
     {
-        distance = Vector3.Distance(player.position, transform.position);
-        position = new Vector3(transform.position.x, (20 * Mathf.Sin(speed * Time.timeSinceLevelLoad)), transform.position.z);
+        position = new Vector3(transform.position.x, (20 * Mathf.Sin(speed * Time.timeSinceLevelLoad + transform.position.z * 0.03f + transform.position.x * 0.03f)) + 1, transform.position.z);
 
         transform.position = position;
     }
