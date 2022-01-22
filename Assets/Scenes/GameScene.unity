@@ -7769,7 +7769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer1: 1
-  speed: 0.5
+  speed: 1
 --- !u!1 &311944913
 GameObject:
   m_ObjectHideFlags: 0
@@ -30179,7 +30179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer1: 0
-  speed: 0.5
+  speed: 1
 --- !u!1 &1120320716
 GameObject:
   m_ObjectHideFlags: 0
