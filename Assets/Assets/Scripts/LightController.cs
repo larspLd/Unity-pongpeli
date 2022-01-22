@@ -11,13 +11,15 @@ public class LightController : MonoBehaviour
     [Range(0,100)] 
     public float intensityBias;
 
+    [Range(0,20)]
+    public int intensityScale;
+
     void Update() {
         changeIntensity();
-
-        lightComponent.intensity = intensityBias  / 10;
     }
 
     public void changeIntensity() {
-        otherLightComponent.intensity = (100 - intensityBias) / 10;
+        otherLightComponent.intensity = (100 - intensityBias) / intensityScale;
+        lightComponent.intensity = intensityBias  / intensityScale;
     }
 }
