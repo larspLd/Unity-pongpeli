@@ -77,12 +77,14 @@ public class Ball : MonoBehaviour
 
         speed = startingSpeed;
 
-        if (player1Score == 1) {
+        if (player1Score == 10) {
             scoreText.text = "Pelaaja 1 voittaa!";
             StartCoroutine(restartGame());
-        } else if (player2Score == 1) {
+
+        } else if (player2Score == 10) {
             scoreText.text = "Pelaaja 2 voittaa!";
             StartCoroutine(restartGame());
+            
         } else {
             scoreText.text = player1Score.ToString() + " - " + player2Score.ToString();
             StartCoroutine(waitForLaunch());
