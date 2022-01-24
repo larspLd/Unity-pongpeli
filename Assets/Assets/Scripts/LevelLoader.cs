@@ -8,8 +8,12 @@ public class LevelLoader : MonoBehaviour
     public Animator transition;
     public float transitionTime;
 
-    public void PlayGame() {
-        StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
+    public void PlayGame(string scene) {
+        if (scene == "MenuScene") {
+            StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex - 1));
+        } else {
+            StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
+        }
     }
 
     IEnumerator LoadScene(int scene) {

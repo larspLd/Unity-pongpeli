@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 [ExecuteInEditMode]
 public class BlitTest : MonoBehaviour

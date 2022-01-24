@@ -5,7 +5,6 @@ using UnityEngine;
 public class LightController : MonoBehaviour
 {
     public Light lightComponent;
-    public GameObject otherLight;
     public Light otherLightComponent;
 
     [Range(0,100)] 
@@ -13,6 +12,11 @@ public class LightController : MonoBehaviour
 
     [Range(0,20)]
     public int intensityScale;
+
+    private void Start() {
+        lightComponent.color = StateController.player1Color;
+        otherLightComponent.color = StateController.player2Color;
+    }
 
     void Update() {
         changeIntensity();
