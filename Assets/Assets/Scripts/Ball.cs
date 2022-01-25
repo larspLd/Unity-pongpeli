@@ -11,6 +11,7 @@ public class Ball : MonoBehaviour
     public float speed;
     private float startingSpeed;
     public float maxSpeed;
+    bool launch; 
 
     public int player1Score;
     public int player2Score;
@@ -24,11 +25,19 @@ public class Ball : MonoBehaviour
     GameObject loaderObject;
     LevelLoader loader;
 
+    public ParticleSystem ParticleSystem;
+    public Material material;
+
+    public Animator animation;
+    public Animator animation2;
+
+    public Paddle paddle1;
+    public Paddle paddle2;
+
     void Start()
     {
         startingSpeed = speed;
 
-        Launch();
         player1Score = 0;
         player2Score = 0;
 
@@ -37,9 +46,10 @@ public class Ball : MonoBehaviour
         
         textObject = GameObject.Find("ScoreText");
         scoreText = textObject.GetComponent<TMP_Text>();
+        material.color = Color.white;
     }
 
-    private void Launch() {
+    public void Launch() {
         float x = Random.Range(0, 2) == 0 ? -1 : 1;
         float y = Random.Range(0, 2) == 0 ? -1 : 1;
         Vector3 direction = new Vector3(x, 0, y);
@@ -54,11 +64,27 @@ public class Ball : MonoBehaviour
             if (speed < maxSpeed) {
                 speed += 10f; 
                 rb.velocity = new Vector3(rb.velocity.x + speed * 0.005f* rb.velocity.x, 0, rb.velocity.z + speed * 0.005f * rb.velocity.z);
+
+                if (paddle.isPlayer2) {
+                    material.color = StateController.player2Color;
+                } else {
+                    material.color = StateController.player1Color;
+                }
             }
         }
     }
 
     private void Update() {
+
+        if (!launch) {
+            if (paddle1.ready && paddle2.ready) {
+                animation.SetTrigger("PlayersReady");
+                animation2.SetTrigger("PlayersReady");
+                launch = true;
+
+                StartCoroutine(waitForLaunch());
+            }
+        }
 
         if(transform.position.x < -333) {
             player2Score++;
@@ -74,14 +100,15 @@ public class Ball : MonoBehaviour
 
         transform.position = new Vector3(0, 1, 0);
         rb.velocity = new Vector3(0, 0, 0);
+        ParticleSystem.Clear();
 
         speed = startingSpeed;
 
-        if (player1Score == 10) {
+        if (player1Score == 6) {
             scoreText.text = "Pelaaja 1 voittaa!";
             StartCoroutine(restartGame());
 
-        } else if (player2Score == 10) {
+        } else if (player2Score == 6) {
             scoreText.text = "Pelaaja 2 voittaa!";
             StartCoroutine(restartGame());
             
@@ -92,7 +119,7 @@ public class Ball : MonoBehaviour
     }
 
     IEnumerator waitForLaunch() {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         Launch();
     }
 

@@ -1,25 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Paddle : MonoBehaviour
 {
 
-    public bool isPlayer1;
+    public bool isPlayer2;
     public float speed;
     
     private float movement;
+    public Vector4 playerColor;
 
-    void Update()
-    {
-        if (isPlayer1) {
+    public GameObject textObject;
+    TMP_Text readyText;
+
+    public bool ready;
+
+    private void Start() {
+        ready = false;
+
+        if (isPlayer2) {
+            playerColor = StateController.player2Color;
+        } else {
+            playerColor = StateController.player1Color;
+        }
+
+        readyText = textObject.GetComponent<TMP_Text>();
+    }
+
+    private void FixedUpdate() {
+        if (isPlayer2) {
             movement = Input.GetAxisRaw("Vertical");
         } else {
             movement = Input.GetAxisRaw("Vertical2");
         }
 
-        if(transform.position.z + movement > -80 && transform.position.z + movement < 80) {
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + movement * speed);
+        if(!ready) {
+            if (movement > 0) {
+                ready = true;
+                readyText.text = "VALMIS!";
+            }
+
+        } else {
+            if(transform.position.z + movement > -80 && transform.position.z + movement < 80) {
+                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + movement * speed * Time.deltaTime);
+            }
         }
     }
 }
