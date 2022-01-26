@@ -53,6 +53,7 @@
      <Compile Include="Assets\Assets\Scripts\Blit.cs" />
      <Compile Include="Assets\Assets\Scripts\ChangeAsset.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
+     <Compile Include="Assets\Assets\Scripts\MenuLightController.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
      <Compile Include="Assets\Assets\Scripts\LevelLoader.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />

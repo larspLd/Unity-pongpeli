@@ -26271,7 +26271,7 @@ GameObject:
   - component: {fileID: 804883564}
   - component: {fileID: 804883566}
   - component: {fileID: 804883565}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26495,7 +26495,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -32824,7 +32824,7 @@ GameObject:
   - component: {fileID: 875759017}
   - component: {fileID: 875759018}
   - component: {fileID: 875759019}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52240,7 +52240,7 @@ GameObject:
   - component: {fileID: 1557239223}
   - component: {fileID: 1557239222}
   - component: {fileID: 1557239226}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52267,7 +52267,7 @@ MonoBehaviour:
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 256
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
@@ -53244,7 +53244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1590595712}
   - component: {fileID: 1590595711}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Global Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
