@@ -26,7 +26,9 @@ public class Ball : MonoBehaviour
     LevelLoader loader;
 
     public ParticleSystem ParticleSystem;
+    public ParticleSystem GoalExplosion;
     public Material material;
+    public Material goalExplosionMaterial;
 
     public Animator animation;
     public Animator animation2;
@@ -47,6 +49,7 @@ public class Ball : MonoBehaviour
         textObject = GameObject.Find("ScoreText");
         scoreText = textObject.GetComponent<TMP_Text>();
         material.color = Color.white;
+        goalExplosionMaterial.color = Color.white;
     }
 
     public void Launch() {
@@ -60,16 +63,17 @@ public class Ball : MonoBehaviour
     private void OnCollisionEnter(Collision collider) {
         Paddle paddle = collider.gameObject.GetComponent<Paddle>();
 
-        if (paddle != null) {
+        if (paddle != null) {           
+            if (paddle.isPlayer2) {
+                material.color = StateController.player2Color;
+                goalExplosionMaterial.color = StateController.player2Color;
+            } else {
+                material.color = StateController.player1Color;
+                goalExplosionMaterial.color = StateController.player1Color;
+            }
             if (speed < maxSpeed) {
                 speed += 10f; 
                 rb.velocity = new Vector3(rb.velocity.x + speed * 0.005f* rb.velocity.x, 0, rb.velocity.z + speed * 0.005f * rb.velocity.z);
-
-                if (paddle.isPlayer2) {
-                    material.color = StateController.player2Color;
-                } else {
-                    material.color = StateController.player1Color;
-                }
             }
         }
     }
@@ -97,6 +101,9 @@ public class Ball : MonoBehaviour
         }
     }
     private void reset() {
+        GoalExplosion.transform.position = new Vector3(transform.position.x, transform.position.y + 50, transform.position.z);
+
+        GoalExplosion.Play();
 
         transform.position = new Vector3(0, 1, 0);
         rb.velocity = new Vector3(0, 0, 0);

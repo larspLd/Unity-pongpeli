@@ -32,7 +32,7 @@ Material:
     - _DoubleStrength: 0.5
     - _LineDistributionPow: 4
     - _LineScale: 1.5
-    - _LineWeight: 0.5
+    - _LineWeight: 0.34
     - _LineWeightMax: 0.7
     - _LineWeightMin: 0.2
     - _ScanSpeed: 2
