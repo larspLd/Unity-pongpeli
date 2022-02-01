@@ -13,6 +13,9 @@ public class Ball : MonoBehaviour
     public float maxSpeed;
     bool launch; 
 
+    public AudioSource pongSound;
+    public AudioSource goalSound;
+
     public int player1Score;
     public int player2Score;
 
@@ -63,7 +66,9 @@ public class Ball : MonoBehaviour
     private void OnCollisionEnter(Collision collider) {
         Paddle paddle = collider.gameObject.GetComponent<Paddle>();
 
-        if (paddle != null) {           
+        if (paddle != null) {    
+            pongSound.Play();
+
             if (paddle.isPlayer2) {
                 material.color = StateController.player2Color;
                 goalExplosionMaterial.color = StateController.player2Color;
@@ -93,10 +98,12 @@ public class Ball : MonoBehaviour
         if(transform.position.x < -333) {
             player2Score++;
             LightController.intensityBias -= 10;
+            goalSound.Play();
             reset();
         } else if (transform.position.x > 333) {
             player1Score++;
             LightController.intensityBias += 10;
+            goalSound.Play();
             reset();
         }
     }
