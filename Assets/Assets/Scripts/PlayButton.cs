@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayButton : MonoBehaviour
 {
 
+    // Menu Uusi Peli nappi.
+
     GameObject loaderObject;
     LevelLoader loader;
 

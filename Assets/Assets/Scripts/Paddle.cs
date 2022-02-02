@@ -6,6 +6,8 @@ using TMPro;
 public class Paddle : MonoBehaviour
 {
 
+    // Paddle movement.
+
     public bool isPlayer2;
     public float speed;
     
@@ -29,6 +31,8 @@ public class Paddle : MonoBehaviour
         readyText = textObject.GetComponent<TMP_Text>();
     }
 
+
+    // FixedUpdat() toimii 60fps vaikka fps ei olisi 60. Sen takia movement pitää laittaa FixedUpdate() ja ei Update()
     private void FixedUpdate() {
         if (isPlayer2) {
             movement = Input.GetAxisRaw("Vertical");

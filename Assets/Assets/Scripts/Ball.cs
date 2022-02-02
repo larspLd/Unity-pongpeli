@@ -6,7 +6,7 @@ using TMPro;
 
 public class Ball : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Melkein kaikki pelin logiikasta löytyy täältä. Voit vaihtaa kaikkia public asetuksia Ball objektissa.
     public Rigidbody rb;
     public float speed;
     private float startingSpeed;
@@ -18,6 +18,7 @@ public class Ball : MonoBehaviour
 
     public int player1Score;
     public int player2Score;
+    public int scoreToWin;
 
     GameObject textObject;
     TMP_Text scoreText;
@@ -69,6 +70,8 @@ public class Ball : MonoBehaviour
         if (paddle != null) {    
             pongSound.Play();
 
+
+            // Vaihtaa värin pelaajan väriksi.
             if (paddle.isPlayer2) {
                 material.color = StateController.player2Color;
                 goalExplosionMaterial.color = StateController.player2Color;
@@ -76,6 +79,7 @@ public class Ball : MonoBehaviour
                 material.color = StateController.player1Color;
                 goalExplosionMaterial.color = StateController.player1Color;
             }
+            // Nopeus
             if (speed < maxSpeed) {
                 speed += 10f; 
                 rb.velocity = new Vector3(rb.velocity.x + speed * 0.005f* rb.velocity.x, 0, rb.velocity.z + speed * 0.005f * rb.velocity.z);
@@ -84,7 +88,7 @@ public class Ball : MonoBehaviour
     }
 
     private void Update() {
-
+        // Valmis
         if (!launch) {
             if (paddle1.ready && paddle2.ready) {
                 animation.SetTrigger("PlayersReady");
@@ -118,11 +122,11 @@ public class Ball : MonoBehaviour
 
         speed = startingSpeed;
 
-        if (player1Score == 6) {
+        if (player1Score == scoreToWin) {
             scoreText.text = "Pelaaja 1 voittaa!";
             StartCoroutine(restartGame());
 
-        } else if (player2Score == 6) {
+        } else if (player2Score == scoreToWin) {
             scoreText.text = "Pelaaja 2 voittaa!";
             StartCoroutine(restartGame());
             

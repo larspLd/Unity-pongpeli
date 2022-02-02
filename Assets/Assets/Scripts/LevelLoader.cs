@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
+
+    //Lataa sceane.
     public Animator transition;
     public float transitionTime;
 

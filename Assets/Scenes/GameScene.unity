@@ -33025,6 +33025,7 @@ MonoBehaviour:
   goalSound: {fileID: 737666762}
   player1Score: 0
   player2Score: 0
+  scoreToWin: 6
   ParticleSystem: {fileID: 804883566}
   GoalExplosion: {fileID: 737666761}
   material: {fileID: 2100000, guid: 38402b1cd99a5d4468a75306c75a1352, type: 2}
@@ -47034,7 +47035,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41b0556a493f61844be7b28010faca70, type: 2}
+  - {fileID: 2100000, guid: cc8b0107d19a0c946920242606d6611a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

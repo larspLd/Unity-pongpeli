@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class ColorController : MonoBehaviour
 {
+
+    // Menu pelaaja väri kuva.
     Image Player1Image;
 
     public GameObject Player2Object;

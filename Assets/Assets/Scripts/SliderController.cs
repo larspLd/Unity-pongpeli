@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class SliderController : MonoBehaviour
 {
+
+    // Menu väri vaihtaja.
+
     public Slider Player1Red;
     public Slider Player1Green;
     public Slider Player1Blue;

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LightController : MonoBehaviour
 {
+    // Peli väri controller. Kun pelaaja saa pisteitä vaihda kirkkaus.
+
     public Light lightComponent;
     public Light otherLightComponent;
 
