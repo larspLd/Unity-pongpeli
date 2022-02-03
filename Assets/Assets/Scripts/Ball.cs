@@ -52,6 +52,8 @@ public class Ball : MonoBehaviour
         
         textObject = GameObject.Find("ScoreText");
         scoreText = textObject.GetComponent<TMP_Text>();
+
+        // Kaikki particle värit valkosiksi kun alotat pelin.
         material.color = Color.white;
         goalExplosionMaterial.color = Color.white;
     }
@@ -67,6 +69,7 @@ public class Ball : MonoBehaviour
     private void OnCollisionEnter(Collision collider) {
         Paddle paddle = collider.gameObject.GetComponent<Paddle>();
 
+        // Jos osuu paddle objektia.
         if (paddle != null) {    
             pongSound.Play();
 
@@ -79,7 +82,7 @@ public class Ball : MonoBehaviour
                 material.color = StateController.player1Color;
                 goalExplosionMaterial.color = StateController.player1Color;
             }
-            // Nopeus
+            // Kun osut palloa siitä tulee nopeampi.
             if (speed < maxSpeed) {
                 speed += 10f; 
                 rb.velocity = new Vector3(rb.velocity.x + speed * 0.005f* rb.velocity.x, 0, rb.velocity.z + speed * 0.005f * rb.velocity.z);
@@ -99,6 +102,7 @@ public class Ball : MonoBehaviour
             }
         }
 
+        // Scoring
         if(transform.position.x < -333) {
             player2Score++;
             LightController.intensityBias -= 10;

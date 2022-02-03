@@ -28,8 +28,8 @@ Material:
     - _Brightness: 2.5
     - _CurveX: 2.4
     - _CurveY: 3.1
-    - _DoubleOffset: 0.5
-    - _DoubleStrength: 0.5
+    - _DoubleOffset: 300
+    - _DoubleStrength: 0.1
     - _LineDistributionPow: 4
     - _LineScale: 1.5
     - _LineWeight: 0.34

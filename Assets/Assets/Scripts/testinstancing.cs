@@ -7,7 +7,11 @@ public class testinstancing : MonoBehaviour
 
     // Kuubit menu taustalla. BackgroundCubes objektilla on tämä scripti. Materials/MenuCubeShader on tämän scription toinen osa.
 
+
+    // !!! Voit vaihtaa miten monta kuubia on olemassa BackgroundCubes objektissa !!!
     public int instanceCount = 1;
+
+
     public Mesh instanceMesh;
     public Material instanceMaterial;
     public int subMeshIndex = 0;
@@ -16,6 +20,7 @@ public class testinstancing : MonoBehaviour
     private int cachedSubMeshIndex = -1;
     private ComputeBuffer positionBuffer;
     private ComputeBuffer argsBuffer;
+    private ComputeBuffer colorBuffer;
     private uint[] args = new uint[5] { 0, 0, 0, 0, 0 };
 
     void Start() {
@@ -29,7 +34,7 @@ public class testinstancing : MonoBehaviour
             UpdateBuffers();
 
         // Render
-        Graphics.DrawMeshInstancedIndirect(instanceMesh, subMeshIndex, instanceMaterial, new Bounds(new Vector3(0f, 50f, 0),new Vector3(100.0f, 1000.0f, 100.0f)), argsBuffer);
+        Graphics.DrawMeshInstancedIndirect(instanceMesh, subMeshIndex, instanceMaterial, new Bounds(new Vector3(0f, 0f, 0),new Vector3(1000.0f, 1000.0f, 1000.0f)), argsBuffer);
     }
 
     void UpdateBuffers() {
@@ -41,20 +46,35 @@ public class testinstancing : MonoBehaviour
         if (positionBuffer != null)
             positionBuffer.Release();
         positionBuffer = new ComputeBuffer(instanceCount, 16);
+        colorBuffer = new ComputeBuffer(instanceCount, 16);
+
         Vector4[] positions = new Vector4[instanceCount];
+        Vector4[] colors = new Vector4[instanceCount];
 
         // Kaikki erilaiset attributes laitetaan tänne.
         for (int i = 0; i < instanceCount; i++) {
-            float angle = Random.Range(0.0f, Mathf.PI * 9.0f);
+
+            // Kuubien erilaiset muodot ja position.
+            float angle = Random.Range(0.0f, Mathf.PI * 3.6f);
             float distance = Random.Range(20.0f, 5000.0f);
             float height = Random.Range(0.0f, 700.0f);
             float size = Random.Range(0.05f, 70.0f);
             positions[i] = new Vector4(Mathf.Sin(angle) * distance, height, Mathf.Cos(angle) * distance, size);
+
+            // Kuubien värit.
+            float r = Random.Range(0.00f, 1f);
+            float g = Random.Range(0.00f, 1f);
+            float b = Random.Range(0.00f, 1f);
+            float a = Random.Range(0.80f, 1f);
+            colors[i] = new Vector4(r, g, b, a);
         }
         positionBuffer.SetData(positions);
-        instanceMaterial.SetBuffer("positionBuffer", positionBuffer);
+        colorBuffer.SetData(colors);
 
-        // Indirect args
+        instanceMaterial.SetBuffer("positionBuffer", positionBuffer);
+        instanceMaterial.SetBuffer("colorBuffer", colorBuffer);
+
+        // Jotai system asioit
         if (instanceMesh != null) {
             args[0] = (uint)instanceMesh.GetIndexCount(subMeshIndex);
             args[1] = (uint)instanceCount;
@@ -71,10 +91,16 @@ public class testinstancing : MonoBehaviour
         cachedSubMeshIndex = subMeshIndex;
     }
 
+
+    // Pitää release nää GPU bufferit.
     void OnDisable() {
         if (positionBuffer != null)
             positionBuffer.Release();
         positionBuffer = null;
+
+        if (colorBuffer != null)
+            colorBuffer.Release();
+        colorBuffer = null;
 
         if (argsBuffer != null)
             argsBuffer.Release();
