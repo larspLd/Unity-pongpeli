@@ -6,7 +6,7 @@ Shader "Instanced/DustShader" {
 
 		Pass {
 
-			Tags {"Queue"="Geometry" "IgnoreProjector"="True" "RenderType"="Transparent"}
+			Tags {"Queue"="Geometry" "IgnoreProjector"="True" "RenderType"="Transparent" "RenderPipeline" = "UniversalRenderPipeline"}
 			ZWrite Off
 			Lighting Off
 			Fog { Mode Off }
